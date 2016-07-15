@@ -1,0 +1,327 @@
+$primary_color: #0E2E3B;
+$shadow_color: $primary_color - #141414;
+$font_color: $primary_color + #DDD;
+$high_color: $primary_color + #111;
+$primary_font: 'Vollkorn', serif;
+
+$youtube_ht: 315px;
+$youtube_wd: 560px;
+
+@import url(https://fonts.googleapis.com/css?family=Vollkorn:400,700);
+@import 'helper';
+
+
+* {
+	box-sizing: border-box;
+	font: 100 14px/17px $primary_font;
+}
+
+a {
+	color: inherit;
+	text-decoration: underline;
+	&:hover{
+		background: $font_color;
+		color: $primary_color;
+	}
+}
+
+::-moz-selection {
+	color: $primary_color;
+	background: white;
+	text-shadow: none;
+}
+
+::selection {
+    color: $primary_color;
+    background: #fff;
+    text-shadow: none;
+}
+
+body {
+	background: $primary_color;
+	color: $font_color;
+	padding-bottom: 40px;
+}
+
+
+button {
+	height: 32px;
+	background: $high_color;
+	border-radius: 5px;
+	border: 0;
+	margin: 7px 0;
+	color: $font_color;
+	float: right;
+	padding: 0 20px 0 20px;
+	border-bottom: 3px solid $shadow_color;
+	transition: all linear .2s;
+
+	&:hover {
+		background: $shadow_color;
+	}
+
+	&:focus {
+		outline: none;
+	}
+}
+
+.box {
+	display: inline-block;
+	border-radius: 3px;
+	box-shadow: 0px 2px 10px -3px $shadow_color;
+	background: $high_color;
+}
+
+.clearer {
+	clear: both;
+}
+
+header {
+	width: 100%;
+	padding: 200px 0px;
+	padding: 10vh 0px;
+	h1 {
+		text-align: center;
+		font: bold 50px/45px $primary_font;
+		text-shadow: 4px 4px 0 $shadow_color;
+	}
+}
+
+main {
+	section {
+		width: 50%;
+		min-width: 300px;
+		padding: 0 30px;
+		float: left;
+		box-sizing:border-box;
+
+		.content {
+			@extend .box;
+			width: 100%;
+			padding: 20px 8px;
+
+			h3 {
+				display: none;
+			}
+		}
+
+		&.youtube {
+			.content {
+				min-height: $youtube_ht;
+
+				.carousel {
+					min-height: $youtube_ht;
+				}
+
+				iframe {
+					@extend .box;
+					margin: 0 auto;
+					left: 50%;
+					margin-left: -$youtube_wd/2;
+					position: absolute;
+				}
+			}
+		}
+	}
+	clear: both;
+}
+
+footer {
+	color: $font_color - #777;
+	position: fixed;
+	bottom: 0;
+	width:100%;
+	padding: 8px 20px;
+	background: $primary_color - #111;
+	font: 200 16px/16px $primary_font;
+
+	small {
+		float: left;
+	}
+
+	section {
+		position: relative;
+		margin-left: 30px;
+		text-align: center;
+		float: left;
+		.content {
+			@extend .box;
+			width: 500px;
+			position: absolute;
+			bottom: 1.7em;
+			left: 0;
+			display: none;
+		}
+	}
+
+	.contact {
+		.message, .mailbox, .name, .foot, textarea  {
+			display: block;
+			padding: 0;
+			margin: 0;
+			border: 0;
+			clear: both;
+			overflow: hidden;
+		}
+
+		.first, .last, .email {
+			border: 1px solid rgba(0,0,0,0.1);
+			padding-left: 20px;
+			height: 2.7em;
+			line-height: 1.5em;
+		}
+
+		h2 {
+			background: rgba(0,0,0,.05);
+			padding: 10px 20px;
+		}
+
+		.first, .last {
+			float: left;
+			box-sizing: border-box;
+			width: 50%;;
+			margin: 0;
+		}
+
+		.last {
+			border-left: 0;
+		}
+
+		.email {
+			width: 100%;
+			border-top: 0;
+		}
+
+		textarea {
+			@extend .email;
+			height: 200px;
+			padding-top: 10px;
+		}
+
+		.btnbox {
+			@extend header;
+			padding-right: 20px;
+		}
+
+		.first:focus, .last:focus, .email:focus, textarea:focus {
+		  outline: none;
+		  background: rgba(0, 0, 0,.1);
+		  color: $font_color;
+		}
+	}
+}
+
+/*
+ * TWITTER CLIENT
+ */
+
+$twtr_img_size: 150px;
+
+.twtr_timeline {
+	list-style-type: none;
+	min-height: $twtr_img_size + 110px;
+
+	.twtr_head {
+		margin: 0;
+	}
+
+	.twtr_tweet {
+		@extend .box;
+		background: $font_color;
+		color: $shadow_color;
+		display: block;
+		max-width: 500px;
+		padding: 15px;
+		top: 50px;
+
+		&.visible {
+			top: 25px;
+		}
+	}
+
+	.twtr_text {
+		display: block;
+	}
+
+	.twtr_user {
+
+	}
+
+	.twtr_date {
+		margin-top: 0.5em;
+		color: ($shadow_color + $font_color ) / 2;
+		display: block;
+	}
+
+	.twtr_hashtag {
+		font-weight: bold;
+	}
+
+	.twtr_photo {
+		@extend .box;
+		max-height: $twtr_img_size;
+		width: auto;
+		display: block;
+		margin: 10px auto;
+	}
+}
+
+
+/*
+ * CAROUSEL
+ */
+@include keyframes(carousel_fadeIn) {
+	0% { opacity: 0 }
+	1% { opacity: 1 }
+	100% { opacity: 1 }
+}
+
+.carousel {
+	position: relative;
+	margin: 0;
+
+	.carousel_item {
+		display: block!important;
+		margin-bottom: 15px;
+		&.visible{
+    		@include animation-name('carousel_fadeIn');
+    		@include animation-duration('0.5s');
+    		@include animation-fill-mode('forwards');
+		}
+	}
+
+	&[iter] .carousel_item {
+		display: none!important;
+		position: absolute;
+		margin-bottom: 0;
+		&.visible {
+			display: block!important;
+		}
+	}
+
+	.arrow {
+	font-size: 40px;
+	position: absolute;
+	top: 50%;
+	margin-top: -20px;
+	text-shadow: 0 2px 3px $shadow_color;
+
+		&.left {
+			left: -5px;
+		}
+
+		&.right {
+				right: -5px;
+		}
+
+		&.clicked {
+			color: $shadow_color;
+		}
+
+		&::selection {
+			color: initial;
+			background: transparent;
+		}
+	}
+
+}
