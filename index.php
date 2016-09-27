@@ -149,6 +149,10 @@
 				</div>
 			</form>
 		</section>
+
+		<section class="github">
+			<a class="btn" href="https://github.com/mrtukkin/generation-energiewende">Git</a>
+		</section>
 		</div>
 	</footer>
 
