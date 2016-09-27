@@ -1,5 +1,0 @@
-<?php
-	define('TWITTER_USER',		'');
-	define('TWITTER_KEY',		'');
-	define('TWITTER_SECRET',	'');
-?>

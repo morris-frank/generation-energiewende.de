@@ -1,13 +1,25 @@
 <?php
 	setlocale(LC_TIME, "de_DE");
-	ini_set('display_errors', 1);
-	ini_set('display_startup_errors', 1);
-	error_reporting(E_ALL);
+	ini_set('display_errors', 'On');
+	error_reporting(E_ALL | E_STRICT);
 
 	include './assets/TwitterController.php';
-	include './assets/config';
+	include './assets/controller.php';
 
-	$twtr = new TwitterController(TWITTER_USER, TWITTER_KEY, TWITTER_SECRET);
+	$cnfg_file = file_get_contents('./secret/config.json');
+	$cnfg = json_decode($cnfg_file, True);
+	$notice_messages = [];
+
+	$twtr 			= new TwitterController($cnfg['twtr_user'], $cnfg['twtr_key'], $cnfg['twtr_secret']);
+	$mailman 		= new MailController($cnfg);
+
+	if (mail_pending()) {
+		process_mail($mailman);
+		$notice_messages[] = 'Danke für ihre Kontaktanfrage';
+		//echo "<meta http-equiv='refresh' content='0'>";
+	}
+
+	$yt_links = preg_split("/((\r?\n)|(\r\n?))/", $cnfg['yt_list']);
 ?>
 
 <!DOCTYPE html>
@@ -37,14 +49,13 @@
 	<!-- styles -->
 	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/2.1.0/normalize.css" />
 	<link rel="stylesheet" href="assets/main.css" />
+	<link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,700" rel="stylesheet">
 
 	<!-- icons -->
 	<link rel="shortcut icon" href="assets/favicon.ico" />
 
 	<!-- head scripts -->
 	<!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-
-
 </head>
 
 
@@ -59,72 +70,140 @@
 			<div class="content">
 				<h3>YouTube</h3>
 				<div class="carousel">
-					<iframe class="carousel_item" width="560" height="315" src="https://www.youtube.com/embed/D_6p6IeBYSA?rel=0&showinfo=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>
-					<iframe class="carousel_item" width="560" height="315" src="https://www.youtube.com/embed/O72SR6V9CdU?rel=0&showinfo=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>
-					<iframe class="carousel_item" width="560" height="315" src="https://www.youtube.com/embed/scJReCDgNeo?rel=0&showinfo=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>
-
+					<?php
+						foreach ($yt_links as $key => $link) {
+							if($link != '') {
+								echo '<iframe class="carousel_item" width="560" height="315" src="https://www.youtube.com/embed/' . $link . '?showinfo=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>';
+							}
+						}
+					?>
 				</div>
 			</div>
 		</section>
 
-		<section class="twitter">
+		<!--<section class="twitter">
 			<div class="content">
 				<h3>Twitter</h3>
 				<?php echo $twtr->draw() ?>
 			</div>
 		</section>
+		-->
 	</main>
 
 	<div class="clearer"></div>
 	<footer>
+		<?php
+		if ($notice_messages != []){
+			foreach ($notice_messages as $key => $value) {
+				echo "<div class=\"notice_message\">".$value."</div>";
+			}
+		}
+		?>
+		<div class="footer-wrapper">
 		<small> &copy; 2016 </small>
 		<section class="impressum">
 			<a class="btn" >Impressum</a>
 			<div class="content">
-				Musterfirmenname Gesellschaft mit beschränkter Haftung(1)<br>
-				Musterstraße 1<br>
-				D-12345 Musterstadt<br>
+				info@generation-energiewende.de
 				<br>
-				Vertretungsberechtiger Geschäftsführer: Maximilian Mustermann<br>
 				<br>
-				Telefon: 123/123456(2)<br>
-				Fax: 123/123457<br>
+				Wir bewegen was! e.V.
 				<br>
-				E-Mail: info@musternamegmbh.de<br>
+				Rheinstraße 2-6
+				69126 Heidelberg
 				<br>
-				Registergericht: Amtsgericht Musterstadt<br>
-				Registernummer: HRB 12345<br>
-				Stammkapital: 25.000 Euro(3)<br>
+				Registergericht: Amtsgericht Mannheim
 				<br>
-				Umsatzsteuer-Identifikationsnummer gem. § 27a UStG: DE 123456789<br>
-				Inhaltlich Verantwortlicher: Maximilian Mustermann (Anschrift s.o.)(4)
+				Registernummer: VR333328
 			</div>
 		</section>
 
 		<section class="contact">
 			<a class="btn" >Kontakt</a>
-			<div class="content">
+			<form id="CONTACT_FORM" class="content" method="post" >
 				<h2>Schreib uns:</h2>
 				<div class='name'>
-					<input class='first' placeholder='Vorname' type='text'>
-					<input class='last' placeholder='Nachname' type='text'>
+					<input id="CONTACT_FORM_FIRST_NAME" class='first' name='first_name' placeholder='Vorname' type='text'>
+					<input id="CONTACT_FORM_LAST_NAME" class='last' name='last_name' placeholder='Nachname' type='text'>
 				</div>
 				<div class='mailbox'>
-					<input class='email' placeholder='E-mail' type='text'>
+					<input id="CONTACT_FORM_MAIL" class='email' name='mail_adress' placeholder='E-mail' type='text'>
 				</div>
 				<div class='message'>
-					<textarea placeholder='Deine Nachricht!'></textarea>
+					<textarea id="CONTACT_FORM_MESSAGE" name='message_text' placeholder='Deine Nachricht!'></textarea>
 				</div>
+				<textarea name="notice_messages"></textarea>
 				<div class="btnbx">
-					<button>Abschicken!</button>
+					<button type="button" id="CONTACT_FORM_SUBMIT">Abschicken!</button>
 				</div>
-			</div>
+			</form>
 		</section>
+
+
+		<section class="login">
+			<a class="btn">Login</a>
+			<form id="LOGIN_FORM" class="content" method="post" action="admin.php" >
+				<input id="LOGIN_FORM_PASSWORD" class='pass' name='password' placeholder='password' type='password'>
+				<div class="btnbx">
+					<button type="submit" id="LOGIN_FORM_SUBMIT">Enter</button>
+				</div>
+			</form>
+		</section>
+		</div>
 	</footer>
 
 
 	<!-- foot scripts -->
 	<script src="assets/main.js"></script>
+
+	<script>
+		var form = document.getElementById("CONTACT_FORM");
+		function validateEmail(email) {
+    		var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    		return re.test(email);
+		}
+
+		document.getElementById("CONTACT_FORM_SUBMIT").addEventListener("click", function () {
+			var go = true;
+
+			var element = document.getElementById('CONTACT_FORM_MAIL');
+			console.log(validateEmail(element.value));
+			if (validateEmail(element.value) != true | element.value.length == 0) {
+				element.classList.add("wrongInput");
+				go = false;
+			}else if (element.classList.contains("wrongInput")){
+				element.classList.remove("wrongInput");
+			}
+
+			var element = document.getElementById('CONTACT_FORM_FIRST_NAME');
+			if (element.value.length > 150 | element.value.length == 0) {
+				element.classList.add("wrongInput");
+				go = false;
+			}else if (element.classList.contains("wrongInput")){
+				element.classList.remove("wrongInput");
+			}
+
+			var element = document.getElementById('CONTACT_FORM_LAST_NAME');
+			if (element.value.length > 150 | element.value.length == 0) {
+				element.classList.add("wrongInput");
+				go = false;
+			}else if (element.classList.contains("wrongInput")){
+				element.classList.remove("wrongInput");
+			}
+
+			var element = document.getElementById('CONTACT_FORM_MESSAGE');
+			if (element.value.length == 0) {
+				element.classList.add("wrongInput");
+				go = false;
+			}else if (element.classList.contains("wrongInput")){
+				element.classList.remove("wrongInput");
+			}
+
+			if(go){
+  				form.submit();
+  			}
+		});
+	</script>
 
 </body>
 </html>
