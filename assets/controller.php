@@ -59,7 +59,7 @@
 			$string = str_replace('[name]', $this->name, $string);
 			$string = str_replace('[mail]', $this->to, $string);
 			$string = str_replace('[message]', $this->message, $string);
-			return $sring;
+			return $string;
 		}
 
 		public function SendMail($to, $name, $forename, $message)

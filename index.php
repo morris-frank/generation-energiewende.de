@@ -104,17 +104,7 @@
 		<section class="impressum">
 			<a class="btn" >Impressum</a>
 			<div class="content">
-				info@generation-energiewende.de
-				<br>
-				<br>
-				Wir bewegen was! e.V.
-				<br>
-				Rheinstraße 2-6
-				69126 Heidelberg
-				<br>
-				Registergericht: Amtsgericht Mannheim
-				<br>
-				Registernummer: VR333328
+				<a class="btn" href="https://github.com/mrtukkin/generation-energiewende">Code auf Git</a>
 			</div>
 		</section>
 
@@ -148,10 +138,6 @@
 					<button type="submit" id="LOGIN_FORM_SUBMIT">Enter</button>
 				</div>
 			</form>
-		</section>
-
-		<section class="github">
-			<a class="btn" href="https://github.com/mrtukkin/generation-energiewende">Git</a>
 		</section>
 		</div>
 	</footer>
