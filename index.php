@@ -104,7 +104,7 @@
 		<section class="impressum">
 			<a class="btn" >Impressum</a>
 			<div class="content">
-				<a class="btn" href="https://github.com/mrtukkin/generation-energiewende">Code auf Git</a>
+				<a href="https://github.com/mrtukkin/generation-energiewende">Code auf Git</a>
 			</div>
 		</section>
 

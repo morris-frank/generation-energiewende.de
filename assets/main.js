@@ -49,7 +49,7 @@ window.onclick = function(e) {
  *
  *
  */
-carousel_init(true)
+carousel_init(false)
 
 function carousel_init(automatic)
 {
@@ -113,6 +113,8 @@ function carousel_iter(carousel_idx, n)
 {
 	var cur = window.carousels[carousel_idx].getAttribute("iter");
 	cur = parseInt(cur);
+	var carousel_items = window.carousels[carousel_idx].querySelectorAll(".carousel_item");
+	carousel_items[cur].classList.remove("visible");
 	carousel_jump(carousel_idx, cur + n);
 }
 
