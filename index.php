@@ -32,7 +32,7 @@
 
 	<!-- search meta -->
 	<title>Generation Energiewende</title>
-	<meta name="author" content="Nicolai Ferchl" />
+	<meta name="author" content="" />
 	<meta name="description" content="[]" />
 	<meta name="keywords" content="[]" />
 	<meta name="robots" contents="[]" />
@@ -104,6 +104,7 @@
 		<section class="impressum">
 			<a class="btn" >Impressum</a>
 			<div class="content">
+				<?php echo $cnfg['impressum']; ?>
 				<a href="https://github.com/mrtukkin/generation-energiewende">Code auf Git</a>
 			</div>
 		</section>

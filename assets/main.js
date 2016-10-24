@@ -114,7 +114,7 @@ function carousel_iter(carousel_idx, n)
 	var cur = window.carousels[carousel_idx].getAttribute("iter");
 	cur = parseInt(cur);
 	var carousel_items = window.carousels[carousel_idx].querySelectorAll(".carousel_item");
-	carousel_items[cur].classList.remove("visible");
+	carousel_items[cur-1].classList.remove("visible");
 	carousel_jump(carousel_idx, cur + n);
 }
 

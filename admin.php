@@ -15,6 +15,7 @@
 	if (strcmp($given_hash, $cnfg_json['password_hash']) != 0) { show_return(); }
 
 	$cnfg = [
+		'impressum' => '',
 		'hub_mail' => '',
 		'twtr_user' => '',
 		'twtr_key' => '',
@@ -84,6 +85,12 @@
 				<textarea name="guest_message" ><?php echo $cnfg['guest_message']; ?></textarea>
 			<label>Admin message:</label>
 				<textarea name="admin_message"><?php echo $cnfg['admin_message']; ?></textarea>
+		</fieldset>
+
+		<fieldset>
+			<legend>Impressum</legend>
+			<label>Impressum Text</label>
+				<textarea name="impressum" ><?php echo $cnfg['impressum']; ?></textarea>
 		</fieldset>
 
 		<fieldset>
