@@ -1,0 +1,117 @@
+a {
+  color: inherit;
+  text-decoration: none; }
+  a:hover {
+    border-bottom: 4px solid #ebffff; }
+
+::-moz-selection {
+  color: #0E2E3B;
+  background: white;
+  text-shadow: none; }
+
+::selection {
+  color: #0E2E3B;
+  background: #fff;
+  text-shadow: none; }
+
+body {
+  padding-bottom: 40px; }
+
+h1 {
+  text-align: center;
+  font: bold 50px/45px "Josefin Sans", sans-serif;
+  text-shadow: 4px 4px 0 #001a27; }
+
+button {
+  line-height: 32px;
+  background: #1f3f4c;
+  border-radius: 5px;
+  border: 0;
+  color: #ebffff;
+  padding: 0 20px 0 20px;
+  border-bottom: 3px solid #001a27;
+  transition: all linear .2s;
+  text-decoration: none;
+  text-align: center; }
+  button:hover {
+    background: #001a27; }
+  button:focus {
+    outline: none; }
+
+#admin_panel input, #admin_panel textarea {
+  display: block;
+  min-width: 400px;
+  border-radius: 5px;
+  margin-bottom: 10px; }
+#admin_panel textarea {
+  min-height: 120px; }
+
+.clearer {
+  clear: both; }
+
+header {
+  width: 100%;
+  padding: 200px 0px;
+  padding: 10vh 0px; }
+
+footer {
+  color: #748888;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding: 8px 20px;
+  background: #001d2a; }
+  footer small {
+    float: left; }
+  footer .notice_message {
+    width: 100%;
+    height: 1.5em;
+    background: rgba(188, 19, 57, 0.4);
+    text-align: center; }
+  footer .footer-wrapper {
+    margin: 0 auto;
+    width: 400px;
+    position: relative; }
+  footer section {
+    margin-left: 30px;
+    float: left; }
+
+.reveal-overlay {
+  text-align: center; }
+  .reveal-overlay h2 {
+    padding: 10px 20px; }
+  .reveal-overlay textarea {
+    min-height: 200px; }
+
+/*
+ * TWITTER CLIENT
+ */
+.twtr_timeline {
+  list-style-type: none;
+  min-height: 260px;
+  padding: 30px 28px; }
+  .twtr_timeline .twtr_tweet {
+    display: inline-block;
+    border-radius: 3px;
+    box-shadow: 0px 2px 10px -3px #001a27;
+    background: #ebffff;
+    color: #001a27;
+    padding: 15px; }
+  .twtr_timeline .twtr_text {
+    display: block; }
+  .twtr_timeline .twtr_date {
+    margin-top: 0.5em;
+    color: #768080;
+    display: block; }
+  .twtr_timeline .twtr_hashtag {
+    font-weight: bold; }
+  .twtr_timeline .twtr_photo {
+    border-radius: 3px;
+    box-shadow: 0px 2px 10px -3px #001a27;
+    background: #ebffff;
+    max-height: 150px;
+    width: auto;
+    display: block;
+    margin: 10px auto; }
+
+/*# sourceMappingURL=main.css.map */

@@ -87,20 +87,23 @@
 		{
 			$timeline = json_decode(file_get_contents($this->cache_file));
 			$name = $timeline[0]->user->name;
-			$addend = "<ul class='twtr_timeline carousel'>"
-					. "<h4 class='twtr_head'>".$name." "
+			$append = "<h3>Twitter "
 					. "(<a class='twtr_user' href='https://twitter.com/".$this->screen_name."'>@".$this->screen_name."</a>)"
-					. "</h4>";
+					. "</h3>"
+					. "<div class='twtr_timeline orbit' data-orbit data-auto-play='true' data-pause-on-hover='true' >"
+					. "<ul class='orbit-container'>";
+			$append .= "<button class='orbit-previous'>&#10094;&#xFE0E;</button>"
+					. "<button class='orbit-next'>&#10095;&#xFE0E;</button>";
 				foreach ($timeline as $tweetID => $tweet) {
-					$addend .= $this->drawTweet($tweet);
+					$append .= $this->drawTweet($tweet);
 				}
-			$addend .= "</ul>";
-			echo $addend;
+			$append .= "</div>";
+			echo $append;
 		}
 
 		private function drawTweet($tweet)
 		{
-			$addend = "<li class='twtr_tweet carousel_item'>"
+			$append = "<li class='twtr_tweet orbit-slide'>"
 					. "<span class='twtr_text'>";
 			$drawText = $tweet->text;
 			$drawMedia = '';
@@ -124,12 +127,12 @@
 
 			$drawDate = $this->drawDate($tweet->created_at);
 
-			$addend .= $drawText
+			$append .= $drawText
 					.  "</span>"
 					.  $drawMedia
 					.  $drawDate
 					.  "</li>";
-			return $addend;
+			return $append;
 		}
 
 		private function rplHashtags($tweet_text, $hashtags)
@@ -162,7 +165,7 @@
 		}
 
 		private function drawMedia($media) {
-			$addend = '';
+			$append = '';
 			foreach ($media as $key => $medium) {
 				if ($medium->type == "photo")
 				{
@@ -170,20 +173,20 @@
 					$wd = $medium->sizes->small->w;
 					$ht = $medium->sizes->small->h;
 					$alt = $medium->id_str;
-					$addend .= "<img class='twtr_photo' src='".$src."' height='".$ht."px' width='".$wd."' alt='".$alt."'\>";
+					$append .= "<img class='twtr_photo' src='".$src."' height='".$ht."px' width='".$wd."' alt='".$alt."'\>";
 				}
 			}
-			return $addend;
+			return $append;
 		}
 
 		private function drawDate($created_at) {
-			$addend = "<date class='twtr_date' >";
+			$append = "<date class='twtr_date' >";
 			$date = new DateTime($created_at);
 			$date->setTimezone(new DateTimeZone('EUROPE/Berlin'));
 			$formatted_date = $date->format('H:i, M d');
-			$addend .= '@' . $formatted_date;
-			$addend .= '</date>';
-			return $addend;
+			$append .= '@' . $formatted_date;
+			$append .= '</date>';
+			return $append;
 		}
 	}
 

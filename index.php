@@ -47,9 +47,9 @@
 	<meta name='twitter:card' content='[]' />
 
 	<!-- styles -->
-	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/2.1.0/normalize.css" />
+	<link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,600,700" rel="stylesheet">
+	<link rel="stylesheet" href="assets/foundation.min.css" />
 	<link rel="stylesheet" href="assets/main.css" />
-	<link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,700" rel="stylesheet">
 
 	<!-- icons -->
 	<link rel="shortcut icon" href="assets/favicon.ico" />
@@ -60,34 +60,38 @@
 
 
 <body>
-
 	<header>
 		<h1>Generation Energiewende</h1>
 	</header>
 
-	<main>
-		<section class="youtube">
+	<main class="row">
+		<section class="column small-4 medium-2 youtube">
 			<div class="content">
 				<h3>YouTube</h3>
-				<div class="carousel">
+				<div class="orbit" data-orbit data-auto-play="false" data-pause-on-hover="true" >
+					<ul class="orbit-container" >
+						<button class="orbit-previous">&#10094;&#xFE0E;</button>
+						<button class="orbit-next">&#10095;&#xFE0E;</button>
 					<?php
 						foreach ($yt_links as $key => $link) {
 							if($link != '') {
-								echo '<iframe class="carousel_item" width="560" height="315" src="https://www.youtube.com/embed/' . $link . '?showinfo=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>';
+								echo '<li class="orbit-slide">';
+								echo '<iframe width="560" height="315" src="https://www.youtube.com/embed/' . $link . '?showinfo=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>';
+								echo '</li>';
 							}
 						}
 					?>
+					</ul>
 				</div>
 			</div>
 		</section>
 
-		<!--<section class="twitter">
+		<section class="column small-4 medium-2  twitter">
 			<div class="content">
-				<h3>Twitter</h3>
 				<?php echo $twtr->draw() ?>
 			</div>
 		</section>
-		-->
+
 	</main>
 
 	<div class="clearer"></div>
@@ -100,101 +104,68 @@
 		}
 		?>
 		<div class="footer-wrapper">
+
 		<small> &copy; 2016 </small>
+
 		<section class="impressum">
-			<a class="btn" >Impressum</a>
-			<div class="content">
-				<?php echo $cnfg['impressum']; ?>
-				<a href="https://github.com/mrtukkin/generation-energiewende">Code auf Git</a>
-			</div>
+			<a class="btn" data-open="impressum_reveal" >Impressum</a>
 		</section>
+		<div id="impressum_reveal" class="reveal" data-reveal >
+			<?php echo $cnfg['impressum']; ?>
+			<a href="https://github.com/mrtukkin/generation-energiewende">Code auf Git</a>
+		</div>
 
 		<section class="contact">
-			<a class="btn" >Kontakt</a>
-			<form id="CONTACT_FORM" class="content" method="post" >
-				<h2>Schreib uns:</h2>
-				<div class='name'>
-					<input id="CONTACT_FORM_FIRST_NAME" class='first' name='first_name' placeholder='Vorname' type='text'>
-					<input id="CONTACT_FORM_LAST_NAME" class='last' name='last_name' placeholder='Nachname' type='text'>
-				</div>
-				<div class='mailbox'>
-					<input id="CONTACT_FORM_MAIL" class='email' name='mail_adress' placeholder='E-mail' type='text'>
-				</div>
-				<div class='message'>
-					<textarea id="CONTACT_FORM_MESSAGE" name='message_text' placeholder='Deine Nachricht!'></textarea>
-				</div>
-				<textarea name="notice_messages"></textarea>
-				<div class="btnbx">
-					<button type="button" id="CONTACT_FORM_SUBMIT">Abschicken!</button>
-				</div>
-			</form>
+			<a class="btn" data-open="contact_reveal" >Kontakt</a>
 		</section>
+		<form id="contact_reveal" class="reveal" method="post" data-abide novalidate  data-reveal >
+			<div data-abide-error class="alert callout" style="display: none;">
+				<p><i class="fi-alert"></i>In deinem Formular sind Fehler.</p>
+			</div>
+			<h2>Schreib uns:</h2>
+			<div class='name'>
+				<input class='first' name='first_name' placeholder='Vorname' type='text' required >
+				<span class="form-error">Bitten den Vornamen eintragen!</span>
+				<input class='last' name='last_name' placeholder='Nachname' type='text' required >
+				<span class="form-error">Bitten den Nachnamen eintragen!</span>
+			</div>
+			<div class='mailbox'>
+				<input class='email' name='mail_adress' placeholder='E-mail' type='text' required pattern="email" >
+				<span class="form-error">Bitten eine E-Mail Adresse eintragen!</span>
+			</div>
+			<div class='message'>
+				<textarea name='message_text' placeholder='Deine Nachricht!' required ></textarea>
+				<span class="form-error">Bitten eine Nachricht eintragen!</span>
+			</div>
+			<div class="btnbx">
+				<button type="submit" value="Abschicken" >Abschicken!</button>
+			</div>
+		</form>
 
 
 		<section class="login">
-			<a class="btn">Login</a>
-			<form id="LOGIN_FORM" class="content" method="post" action="admin.php" >
-				<input id="LOGIN_FORM_PASSWORD" class='pass' name='password' placeholder='password' type='password'>
-				<div class="btnbx">
-					<button type="submit" id="LOGIN_FORM_SUBMIT">Enter</button>
-				</div>
-			</form>
+			<a class="btn" data-open="login_reveal">Login</a>
 		</section>
+		<form id="login_reveal" class="reveal" method="post" action="admin.php" data-abide novalidate  data-reveal >
+			<input class='pass' name='password' placeholder='password' type='password' required>
+			<div class="btnbx">
+				<button type="submit">Enter</button>
+			</div>
+		</form>
+
+
+		<a style="margin-left: 30px;" href="https://www.facebook.com/generationenergiewende"><img style="height:1em;" src="images/fb.png" alt="find us on facebook" /></a>
 		</div>
 	</footer>
 
 
 	<!-- foot scripts -->
-	<script src="assets/main.js"></script>
-
-	<script>
-		var form = document.getElementById("CONTACT_FORM");
-		function validateEmail(email) {
-    		var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    		return re.test(email);
-		}
-
-		document.getElementById("CONTACT_FORM_SUBMIT").addEventListener("click", function () {
-			var go = true;
-
-			var element = document.getElementById('CONTACT_FORM_MAIL');
-			console.log(validateEmail(element.value));
-			if (validateEmail(element.value) != true | element.value.length == 0) {
-				element.classList.add("wrongInput");
-				go = false;
-			}else if (element.classList.contains("wrongInput")){
-				element.classList.remove("wrongInput");
-			}
-
-			var element = document.getElementById('CONTACT_FORM_FIRST_NAME');
-			if (element.value.length > 150 | element.value.length == 0) {
-				element.classList.add("wrongInput");
-				go = false;
-			}else if (element.classList.contains("wrongInput")){
-				element.classList.remove("wrongInput");
-			}
-
-			var element = document.getElementById('CONTACT_FORM_LAST_NAME');
-			if (element.value.length > 150 | element.value.length == 0) {
-				element.classList.add("wrongInput");
-				go = false;
-			}else if (element.classList.contains("wrongInput")){
-				element.classList.remove("wrongInput");
-			}
-
-			var element = document.getElementById('CONTACT_FORM_MESSAGE');
-			if (element.value.length == 0) {
-				element.classList.add("wrongInput");
-				go = false;
-			}else if (element.classList.contains("wrongInput")){
-				element.classList.remove("wrongInput");
-			}
-
-			if(go){
-  				form.submit();
-  			}
-		});
-	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/what-input/4.0.4/what-input.min.js"></script>
+	<script src="assets/js/foundation.min.js"></script>
+<script>
+	$(document).foundation();
+</script>
 
 </body>
 </html>
