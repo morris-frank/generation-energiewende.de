@@ -5,10 +5,11 @@ $high_color: $primary_color + #111;
 $primary_font: 'Josefin Sans', sans-serif;
 
 a {
-	color: inherit;
+	color: $font_color;
 	text-decoration: none;
 	&:hover{
-		border-bottom: 4px solid $font-color;
+    color: $font_color;
+		border-bottom: 4px solid $font_color;
 	}
 }
 
@@ -26,12 +27,19 @@ a {
 
 body {
 	padding-bottom: 40px;
+	background: $primary_color;
+	color: $font_color;
+	font-family: $primary_font;
 }
 
 h1 {
 	text-align: center;
 	font: bold 50px/45px $primary_font;
 	text-shadow: 4px 4px 0 $shadow_color;
+}
+
+h2,h3,h4 {
+	font-family: $primary_font;
 }
 
 button {
@@ -99,7 +107,7 @@ footer {
 
 	.footer-wrapper {
 		margin: 0 auto;
-		width: 400px;
+		width: 420px;
 		position: relative;
 	}
 
@@ -112,6 +120,15 @@ footer {
 
 .reveal-overlay {
 	text-align: center;
+	color: $shadow_color;
+
+	a {
+		color: $shadow_color;
+		&:hover{
+			color: $shadow_color;
+			border-bottom: 4px solid $shadow_color;
+		}
+	}
 
 	h2 {
 		padding: 10px 20px;
@@ -144,6 +161,14 @@ $twtr_img_size: 150px;
 
 	.twtr_text {
 		display: block;
+
+		a {
+			color: $shadow_color;
+			&:hover{
+				color: $shadow_color;
+				border-bottom: 4px solid $shadow_color;
+			}
+		}
 	}
 
 	.twtr_date {

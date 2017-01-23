@@ -1,7 +1,8 @@
 a {
-  color: inherit;
+  color: #ebffff;
   text-decoration: none; }
   a:hover {
+    color: #ebffff;
     border-bottom: 4px solid #ebffff; }
 
 ::-moz-selection {
@@ -15,12 +16,18 @@ a {
   text-shadow: none; }
 
 body {
-  padding-bottom: 40px; }
+  padding-bottom: 40px;
+  background: #0E2E3B;
+  color: #ebffff;
+  font-family: "Josefin Sans", sans-serif; }
 
 h1 {
   text-align: center;
   font: bold 50px/45px "Josefin Sans", sans-serif;
   text-shadow: 4px 4px 0 #001a27; }
+
+h2, h3, h4 {
+  font-family: "Josefin Sans", sans-serif; }
 
 button {
   line-height: 32px;
@@ -70,14 +77,20 @@ footer {
     text-align: center; }
   footer .footer-wrapper {
     margin: 0 auto;
-    width: 400px;
+    width: 420px;
     position: relative; }
   footer section {
     margin-left: 30px;
     float: left; }
 
 .reveal-overlay {
-  text-align: center; }
+  text-align: center;
+  color: #001a27; }
+  .reveal-overlay a {
+    color: #001a27; }
+    .reveal-overlay a:hover {
+      color: #001a27;
+      border-bottom: 4px solid #001a27; }
   .reveal-overlay h2 {
     padding: 10px 20px; }
   .reveal-overlay textarea {
@@ -99,6 +112,11 @@ footer {
     padding: 15px; }
   .twtr_timeline .twtr_text {
     display: block; }
+    .twtr_timeline .twtr_text a {
+      color: #001a27; }
+      .twtr_timeline .twtr_text a:hover {
+        color: #001a27;
+        border-bottom: 4px solid #001a27; }
   .twtr_timeline .twtr_date {
     margin-top: 0.5em;
     color: #768080;

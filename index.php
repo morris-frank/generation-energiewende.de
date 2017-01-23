@@ -32,19 +32,6 @@
 
 	<!-- search meta -->
 	<title>Generation Energiewende</title>
-	<meta name="author" content="" />
-	<meta name="description" content="[]" />
-	<meta name="keywords" content="[]" />
-	<meta name="robots" contents="[]" />
-
-	<!-- social meta -->
-	<meta property='og:title' content='Generation Energiewende' />
-	<meta property='og:type' content='[]' />
-	<meta property='og:description' content='[]' />
-	<meta property='og:image' content='assets/share.jpg' />
-	<meta property='og:url' content='[]' />
-	<meta property='og:site_name' content='[]' />
-	<meta name='twitter:card' content='[]' />
 
 	<!-- styles -->
 	<link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,600,700" rel="stylesheet">
@@ -68,16 +55,22 @@
 		<section class="column small-4 medium-2 youtube">
 			<div class="content">
 				<h3>YouTube</h3>
-				<div class="orbit" data-orbit data-auto-play="false" data-pause-on-hover="true" >
+				<div class="orbit"  role="region" data-orbit data-auto-play="true" data-pause-on-hover="false" >
 					<ul class="orbit-container" >
 						<button class="orbit-previous">&#10094;&#xFE0E;</button>
 						<button class="orbit-next">&#10095;&#xFE0E;</button>
 					<?php
+						$is_first_video = True;
 						foreach ($yt_links as $key => $link) {
 							if($link != '') {
-								echo '<li class="orbit-slide">';
-								echo '<iframe width="560" height="315" src="https://www.youtube.com/embed/' . $link . '?showinfo=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>';
+								echo '<li class="orbit-slide';
+								echo $is_first_video ? ' is-active' : '';
+								echo '">';
+								echo '<div class="responsive-embed widescreen">';
+								echo '<iframe width="560" height="315" src="https://www.youtube.com/embed/' . $link . '?showinfo=0&modestbranding=1" allowfullscreen></iframe>';
+								echo '</div>';
 								echo '</li>';
+								$is_first_video = False;
 							}
 						}
 					?>
@@ -162,7 +155,7 @@
 	<!-- foot scripts -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/what-input/4.0.4/what-input.min.js"></script>
-	<script src="assets/js/foundation.min.js"></script>
+	<script src="assets/foundation.min.js"></script>
 <script>
 	$(document).foundation();
 </script>
