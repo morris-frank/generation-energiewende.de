@@ -87,8 +87,8 @@
 		{
 			$timeline = json_decode(file_get_contents($this->cache_file));
 			$name = $timeline[0]->user->name;
-			$append = "<h3>Twitter "
-					. "(<a class='twtr_user' href='https://twitter.com/".$this->screen_name."'>@".$this->screen_name."</a>)"
+			$append = "<h3>"
+					. "<a class='twtr_user' href='https://twitter.com/".$this->screen_name."'>Twitter @".$this->screen_name."</a>"
 					. "</h3>"
 					. "<div class='twtr_timeline orbit' data-orbit data-auto-play='true' data-pause-on-hover='true' >"
 					. "<ul class='orbit-container'>";

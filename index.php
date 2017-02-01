@@ -52,10 +52,16 @@
 	</header>
 
 	<main class="row">
-		<section class="column small-4 medium-2 youtube">
+		<section class="column small-4 medium-2 medium-centered  twitter">
 			<div class="content">
-				<h3>YouTube</h3>
-				<div class="orbit"  role="region" data-orbit data-auto-play="true" data-pause-on-hover="false" >
+				<?php echo $twtr->draw() ?>
+			</div>
+		</section>
+
+		<section class="column small-4 medium-4 youtube">
+			<div class="content">
+				<h3><a href='https://www.youtube.com/channel/UCovbh_iaO15tVE7Bf4LahDw'>YouTube</a></h3>
+				<div class="orbit"  role="region" data-orbit data-auto-play="false" data-pause-on-hover="false" >
 					<ul class="orbit-container" >
 						<button class="orbit-previous">&#10094;&#xFE0E;</button>
 						<button class="orbit-next">&#10095;&#xFE0E;</button>
@@ -78,13 +84,6 @@
 				</div>
 			</div>
 		</section>
-
-		<section class="column small-4 medium-2  twitter">
-			<div class="content">
-				<?php echo $twtr->draw() ?>
-			</div>
-		</section>
-
 	</main>
 
 	<div class="clearer"></div>

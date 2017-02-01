@@ -101,8 +101,7 @@ footer {
  */
 .twtr_timeline {
   list-style-type: none;
-  min-height: 260px;
-  padding: 30px 28px; }
+  min-height: 260px; }
   .twtr_timeline .twtr_tweet {
     display: inline-block;
     border-radius: 3px;
