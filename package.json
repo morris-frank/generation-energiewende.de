@@ -1,4 +1,8 @@
 {
+  "name": "generation-energiewende.de",
+  "repository": "git@github.com:morris-frank/generation-energiewende.de.git",
+  "author": "Maurice Frank <maurice.frank@posteo.de>",
+  "license": "MIT",
   "dependencies": {
     "bulma": "^0.7.2",
     "sass": "^1.14.2"
