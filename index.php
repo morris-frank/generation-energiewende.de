@@ -107,6 +107,38 @@
 			<a href="https://github.com/mrtukkin/generation-energiewende">Code auf Git</a>
 		</div>
 
+		<section class="datenschutz">
+			<a class="btn" data-open="datenschutz_reveal" >Datenschutzerklärung</a>
+		</section>
+		<div id="datenschutz_reveal" class="reveal" data-reveal >
+<h2>Datenschutzerklärung</h2>
+<p>Angaben gemäß § 5 TMG:</p>
+
+<p>Wir bewegen was! e.V.<br>
+Rheinstraße 2-6<br>
+69126 Heidelberg</p>
+
+<p>Registergericht: Amtsgericht Mannheim<br>
+Registernummer: VR333328</p>
+
+<p>E-Mail:<br>
+info[at]generation-energiewende.de</p>
+
+<p>(im Folgenden: „Wir“) ist als Betreiber der Website generation-energiewende.de Verantwortlicher für die personenbezogenen Daten der Nutzer*innen der Website (im Folgenden: „du“) im Sinne der Datenschutzgrundverordnung.</p>
+
+<p>Der Schutz der personenbezogenen Daten unserer Besucher*innen ist uns wichtig. Du kannst von uns erwarten, dass wir mit deinen Daten sensibel und sorgfältig umgehen und für eine hohe Datensicherheit sorgen. Wir beachten die Vorschriften des Bundesdatenschutz- und des Telemediengesetzes sowie der Datenschutzgrundverordnung und werden personenbezogene Daten der Nutzer*innen nur in dem in dieser Datenschutzerklärung beschriebenen Umfang verarbeiten.</p>
+
+<h3>1. Welche personenbezogenen Daten erfassen wir?</h3>
+
+<p>Personenbezogene Daten sind solche Daten, die Rückschlüsse auf deine Identität zulassen. Wir erfassen personenbezogene Daten ausschließlich dann, wenn du diese freiwillig an uns preisgibst. Dies können, je nach deiner Nutzung unserer Seite, die nachfolgenden Daten sein:</p>
+
+<p>Unsere Website enthält Links zu Websites von anderen, mit uns nicht verbundenen Anbietern. Nach Anklicken des Links haben wir keinen Einfluss mehr auf die Verarbeitung der übertragenen Daten (wie zum Beispiel der IP-Adresse oder der URL, auf der sich der Link befindet), da das Verhalten Dritter unserer Kontrolle entzogen ist. Für die Verarbeitung solcher Daten durch Dritte können wir daher keine Verantwortung übernehmen.</p>
+
+<h3>2. Änderungen dieser Datenschutzerklärung</h3>
+
+<p>Wir behalten uns das Recht vor, diese Datenschutzerklärung jederzeit mit Wirkung für die Zukunft zu ändern. Eine jeweils aktuelle Version ist an dieser Stelle verfügbar. Bitte suche die Website regelmäßig auf und informiere dich sich über die geltende Datenschutzerklärung.</p>
+		</div>
+
 		<section class="contact">
 			<a class="btn" data-open="contact_reveal" >Kontakt</a>
 		</section>
