@@ -9,8 +9,10 @@ use File::Copy;
 my $dir_content = 'content/';
 my $dir_build = 'build/';
 my $dir_src = 'src/';
+my $dir_asset = 'assets/';
 
 process_content_files();
+process_assets();
 process_sass();
 exit;
 
@@ -18,6 +20,15 @@ sub process_sass {
     print colored( '    Processing SASS', 'yellow' ), "\n";
     system("node_modules/.bin/sass $dir_src/main.sass $dir_build/main.css");
     print colored( 'Processed SASS', 'green' ), "\n";
+}
+
+sub process_assets {
+    my @input_list = glob "$dir_asset*";
+
+    foreach my $input_file (@input_list) {
+        copy("$input_file", $dir_build . basename($input_file));
+    }
+    print colored('Processed assets', 'green'), "\n";
 }
 
 sub process_content_files {
@@ -55,8 +66,8 @@ sub process_content_file {
         $output_file = "$dir_build$basename/index.html";
     }
     write_file($output_file, $output);
-    system("node_modules/.bin/js-beautify $output_file > $output_file.bak");
-    move("$output_file.bak", $output_file);
+    # system("node_modules/.bin/js-beautify $output_file > $output_file.bak");
+    # move("$output_file.bak", $output_file);
 }
 
 sub read_file {
